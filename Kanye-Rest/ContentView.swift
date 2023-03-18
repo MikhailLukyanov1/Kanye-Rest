@@ -7,20 +7,24 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct KanyeQuoteView: View {
+    @State var quote: String = ""
+    @State var stateController = StateController()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Random Kanye West Quote:")
+                .padding(20)
+            Text(quote)
+            Button("Generate Quote", action: {
+                Task {
+                    await quote = stateController.getData()
+                }
+            })
+                .padding()
+                .multilineTextAlignment(.center)
         }
-        .padding()
-    }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        
     }
 }

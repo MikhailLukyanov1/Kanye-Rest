@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct Kanye_RestApp: App {
+struct Kanye_restApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            KanyeQuoteView()
         }
     }
 }
