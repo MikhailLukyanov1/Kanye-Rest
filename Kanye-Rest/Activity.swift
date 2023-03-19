@@ -8,6 +8,7 @@
 import Foundation
 
 
-struct KanyeQuoteResponse: Decodable {
-    let quote: String
+struct Activity: Codable {
+    let activity: String
+    let participants: Int
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Kanye_restApp: App {
     var body: some Scene {
         WindowGroup {
-            KanyeQuoteView()
+            ActivityView()
         }
     }
 }

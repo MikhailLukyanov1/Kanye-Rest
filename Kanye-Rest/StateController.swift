@@ -9,25 +9,42 @@ import Foundation
 
 class StateController: ObservableObject {
     
-    func getData() async -> String {
+    var suggestedActivity: String
+    var numberOfParticipants: Int
+    
+    init() {
+        suggestedActivity = ""
+        numberOfParticipants = 0
+    }
+    
+    func getData() {
         
-        guard let url = URL(string: "https://api.kanye.rest/") else {
-            print("invalid URL")
-            return "Error"
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            if let decodedResponse = try? JSONDecoder().decode(KanyeQuoteResponse.self, from: data) {
-                return decodedResponse.quote
+        guard let url = URL(string: "https://www.boredapi.com/api/activity?activity=education") else {
+                return
             }
-        }
-        catch {
-            print("Invalid Data")
 
-        }
-        return "Error"
+        URLSession.shared.dataTask(with: url) {data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let data = data else {
+                    print("No data returned")
+                    return
+                }
+
+                do {
+                    let decoder = JSONDecoder()
+                    let result = try decoder.decode(Activity.self, from: data)
+                    self.suggestedActivity = result.activity
+                    self.numberOfParticipants = result.participants
+                    print(self.suggestedActivity)
+                } catch {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                }
+            }.resume()
+        
     }
     
 
