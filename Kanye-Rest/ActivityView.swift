@@ -17,6 +17,7 @@ struct ActivityView: View {
             Text("Random Activity:")
                 .padding(20)
             Text("Acitivty: \(activity)")
+                .padding(5)
             Text("Number of participants: \(String(participants))")
 
             Button("Generate Activity", action: {

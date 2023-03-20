@@ -19,7 +19,7 @@ class StateController: ObservableObject {
     
     func getData() {
         
-        guard let url = URL(string: "https://www.boredapi.com/api/activity?activity=education") else {
+        guard let url = URL(string: "https://www.boredapi.com/api/activity?") else {
                 return
             }
 
